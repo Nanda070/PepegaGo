@@ -2,339 +2,339 @@
 
 # 🐸 Pepega GO
 
-### *Лови · Сражайся · Эволюционируй*
+### *Catch · Battle · Evolve*
 
-Мобильная location-based игра в духе Pokémon GO, где вы ловите **Пепег** в реальном мире, сражаетесь на Аренах, выполняете квесты и эволюционируете своих питомцев.
+A mobile location-based game inspired by Pokémon GO, where you catch **Pepegas** in the real world, battle in Gyms, complete quests, and evolve your pets.
 
-Построена на **React 19 + Vite** · Работает прямо в браузере · Устанавливается как **PWA**
+Built with **React 19 + Vite** · Runs directly in the browser · Installable as a **PWA**
 
 ---
 
-[Запустить](#-быстрый-старт) · [Как играть](#-как-играть) · [Фичи](#-основные-фичи) · [Архитектура](#-архитектура-проекта)
+[Quick Start](#-quick-start) · [How to Play](#-how-to-play) · [Features](#-key-features) · [Architecture](#-project-architecture)
 
 </div>
 
 ---
 
-## 📖 Содержание
+## 📖 Table of Contents
 
-- [О проекте](#-о-проекте)
-- [Основные фичи](#-основные-фичи)
-- [Пепедекс — типы Пепег](#-пепедекс--типы-пепег)
-- [Игровые механики](#-игровые-механики)
-- [Как играть](#-как-играть)
-- [Технологии](#-технологии)
-- [Архитектура проекта](#-архитектура-проекта)
-- [Быстрый старт](#-быстрый-старт)
-- [Скрипты](#-скрипты)
-- [API и внешние сервисы](#-api-и-внешние-сервисы)
-- [Лицензия](#-лицензия)
-
----
-
-## 🎯 О проекте
-
-**Pepega GO** — это полноценная мобильная веб-игра, использующая GPS и камеру устройства. Вы исследуете реальный мир, находите и ловите различных Пепег, вращаете Пепе-стопы для получения ресурсов, сражаетесь с боссами на Аренах и выполняете ежедневные квесты.
-
-Все данные хранятся локально в `localStorage` — аккаунтов и серверов не требуется. Поддерживается до **5 профилей** на одном устройстве с полной изоляцией данных.
+- [About the Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Pokedex — Pepega Types](#-pokedex--pepega-types)
+- [Game Mechanics](#-game-mechanics)
+- [How to Play](#-how-to-play)
+- [Technologies](#-technologies)
+- [Project Architecture](#-project-architecture)
+- [Quick Start](#-quick-start)
+- [Scripts](#-scripts)
+- [APIs & External Services](#-apis--external-services)
+- [License](#-license)
 
 ---
 
-## 🚀 Основные фичи
+## 🎯 About the Project
 
-### 🗺️ Интерактивная карта
-- Карта реального мира на базе **Leaflet + OpenStreetMap**
-- Автоматическое определение и отслеживание GPS-координат
-- Пепеги, Пепе-стопы и Арены появляются вокруг вашего местоположения
-- HUD с профилем, уровнем, XP-баром, монетами и текущей погодой
+**Pepega GO** is a fully functional mobile web game that utilizes your device's GPS and camera. You explore the real world, find and catch various Pepegas, spin Pepe-stops to gather resources, battle bosses in Gyms, and complete daily quests.
 
-### 🎯 Система ловли (AR-камера)
-- Экран ловли с **живой камерой устройства** (задняя камера)
-- Три типа мячей: Покебол, Грейтбол, Ультрабол — каждый с разным множителем ловли
-- Анимация бросания мяча, тряски и побега
-- Свайп вверх или клик для броска
-- Шанс поимки зависит от **типа Пепеги**, **CP** и **типа мяча**
-
-### 🔵 Пепе-стопы
-- **8 точек** генерируются случайно вокруг вас при первом запуске
-- Радиус взаимодействия: **50 метров**
-- Перезарядка: **3 минуты**
-- Дропают: покеболы, монеты, материалы (железо, чипы, ягоды) и яйца (30% шанс)
-
-### ⚔️ Арены (Гимы)
-- **4 арены** со случайными боссами разных типов
-- Радиус взаимодействия: **80 метров**
-- Перезарядка: **24 часа**
-- Два режима боя:
-  - **Авто-бой** — выбираете Пепегу, бой идёт автоматически с анимацией ударов и HP-барами
-  - **AR-Рейд** — тап-битва на время (30 сек), тапайте по боссу через камеру!
-- **Система типов**: Вода > Огонь > Обычный, Золотой бьёт сильнее всех
-
-### 🧬 Эволюция
-- Обычный → Огненный (25 конфет) → Золотой (50 конфет)
-- Кинематографическая анимация эволюции с фазами: вспышка → трансформация → появление
-- CP увеличивается в **1.8x** при эволюции
-
-### 🥚 Яйца и Инкубатор
-- Яйца бывают на **1 км**, **2 км** и **5 км**
-- Помещаете яйцо в инкубатор и **ходите в реальном мире**
-- Когда дистанция пройдена — вылупляется случайная Пепега с бонусом **1.5x CP**
-- Инкубатор можно скрафтить в **Верстаке**
-
-### 📜 Ежедневные квесты
-- **3 случайных квеста** каждый день из пула:
-  - Поймай N Пепег
-  - Поймай Огненного Пепегу
-  - Прокрути N Пепе-стопов
-  - Пройди N метров
-  - Победи Арену
-  - Эволюционируй Пепегу
-- Награды: монеты, мячи
-- Обновляются **в полночь**
-
-### 🔨 Верстак (Крафтинг)
-- Крафтите предметы из материалов, которые дропаются с Пепе-стопов:
-  - 🔴 **Покебол**: 3 ягоды
-  - 🔵 **Грейтбол**: 2 ягоды + 1 железо
-  - ⚫ **Ультрабол**: 1 ягода + 2 железа + 1 чип
-  - 🥚 **Инкубатор**: 5 железа + 3 чипа
-
-### 🏪 Магазин
-- Покупайте мячи за внутриигровые монеты:
-  - Покебол: 10 монет (×1.0)
-  - Грейтбол: 50 монет (×1.5)
-  - Ультрабол: 150 монет (×2.0)
-
-### ❤️ Бадди-система
-- Выберите любую Пепегу в качестве «Бадди» — вашего спутника
-- Каждые **200 метров** ходьбы Бадди находит **+1 конфету** своего типа
-- Прогресс отображается прямо на карте
-
-### 🏆 Таблица лидеров
-- Ваш рейтинг среди симулированных соперников
-- Сортировка по уровню и суммарному CP
-- Отображение фракции каждого игрока
-
-### ⚔️ Фракции (Команды)
-Разблокируются на **5 уровне**. Выбор влияет на цвет профиля и команду в таблице лидеров:
-
-| Фракция | Эмодзи | Философия |
-|---------|--------|-----------|
-| **Team GigaChad** | 🔴 | Сила и мощь. Для настоящих чемпионов. |
-| **Team Sadge** | 🔵 | Мудрость и тактика. Для умных тренеров. |
-| **Team MonkaS** | 🟢 | Баланс и природа. Для истинных путников. |
-
-### 🌦️ Динамическая погода
-Реальная погода влияет на спавн Пепег:
-
-| Погода | Эффект |
-|--------|--------|
-| ☀️ Ясно | Огненные ×1.5, Золотые ×1.3 |
-| 🌧 Дождь | Водяные ×1.7 |
-| ⛈ Гроза | Элитные спавны |
-| ❄️ Снег | Замедленный спавн |
-| ☁️ Облачно | Без эффекта |
-
-### 👤 Мульти-профильная система
-- До **5 профилей** на одном устройстве
-- Изолированные данные: инвентарь, прогресс, покестопы, гимы, квесты
-- Выбор аватара из 10 эмодзи (🐸🔥💧⭐👾🦊🐉🌊⚡🎮)
-- Никнейм от 3 до 16 символов
-- Отображение времени последнего входа
-
-### 🔊 Звуковые эффекты
-Иммерсивный геймплей с звуками:
-- 🎯 Поимка
-- 💨 Побег
-- 🏐 Бросок мяча
-- 🏆 Победа
-- ✨ Эволюция
-- 📜 Завершение квеста
+All data is stored locally in `localStorage` — no accounts or servers are required. It supports up to **5 profiles** on a single device with complete data isolation.
 
 ---
 
-## 📦 Пепедекс — типы Пепег
+## 🚀 Key Features
 
-| Спрайт | Тип | Шанс появления | XP | Базовый Catch Rate | Эволюция |
-|--------|-----|:-:|:-:|:-:|----------|
-| 🟢 | **Обычный Пепега** | 60% | 100 | 80% | → Огненный (25 🍬) |
-| 🔵 | **Водяной Пепега** | 25% | 150 | 60% | — |
-| 🔴 | **Огненный Пепега** | 10% | 200 | 50% | → Золотой (50 🍬) |
-| 🟡 | **Золотой Пепега** | 5% | 500 | 20% | — (финальная форма) |
+### 🗺️ Interactive Map
+- Real-world map powered by **Leaflet + OpenStreetMap**
+- Automatic GPS coordinate detection and tracking
+- Pepegas, Pepe-stops, and Gyms spawn around your location
+- HUD with profile, level, XP bar, coins, and current weather
 
-> **CP (Combat Power)** генерируется случайно и зависит от уровня игрока. Каждая Пепега также получает случайный вес и рост.
+### 🎯 Catching System (AR Camera)
+- Catch screen using your device's **live rear camera**
+- Three types of balls: Pokeball, Greatball, Ultraball — each with different catch multipliers
+- Ball throwing, shaking, and escaping animations
+- Swipe up or click to throw
+- Catch chance depends on the **Pepega type**, **CP**, and **ball type**
+
+### 🔵 Pepe-stops
+- **8 locations** randomly generated around you upon first launch
+- Interaction radius: **50 meters**
+- Cooldown: **3 minutes**
+- Drops: Pokeballs, coins, materials (iron, chips, berries), and eggs (30% chance)
+
+### ⚔️ Gyms (Arenas)
+- **4 Gyms** featuring random bosses of different types
+- Interaction radius: **80 meters**
+- Cooldown: **24 hours**
+- Two battle modes:
+  - **Auto-battle** — select a Pepega, and the battle proceeds automatically with hit animations and HP bars
+  - **AR Raid** — timed tap battle (30 sec), tap the boss through the camera!
+- **Type System**: Water > Fire > Normal, Gold hits the hardest
+
+### 🧬 Evolution
+- Normal → Fire (25 candies) → Gold (50 candies)
+- Cinematic evolution animation featuring phases: flash → transformation → appearance
+- CP increases by **1.8x** upon evolution
+
+### 🥚 Eggs and Incubator
+- Egg distances available: **1 km**, **2 km**, and **5 km**
+- Place an egg in the incubator and **walk in the real world**
+- When the distance is covered, a random Pepega hatches with a **1.5x CP** bonus
+- The incubator can be crafted in the **Workbench**
+
+### 📜 Daily Quests
+- **3 random quests** each day from the pool:
+  - Catch N Pepegas
+  - Catch a Fire Pepega
+  - Spin N Pepe-stops
+  - Walk N meters
+  - Defeat a Gym
+  - Evolve a Pepega
+- Rewards: coins, balls
+- Reset at **midnight**
+
+### 🔨 Workbench (Crafting)
+- Craft items from materials dropped by Pepe-stops:
+  - 🔴 **Pokeball**: 3 berries
+  - 🔵 **Greatball**: 2 berries + 1 iron
+  - ⚫ **Ultraball**: 1 berry + 2 iron + 1 chip
+  - 🥚 **Incubator**: 5 iron + 3 chips
+
+### 🏪 Shop
+- Buy balls using in-game coins:
+  - Pokeball: 10 coins (×1.0)
+  - Greatball: 50 coins (×1.5)
+  - Ultraball: 150 coins (×2.0)
+
+### ❤️ Buddy System
+- Choose any Pepega as your "Buddy" — your companion
+- For every **200 meters** walked, the Buddy finds **+1 candy** of its type
+- Progress is displayed directly on the map
+
+### 🏆 Leaderboard
+- Your ranking among simulated opponents
+- Sorted by level and total CP
+- Displays the faction of each player
+
+### ⚔️ Factions (Teams)
+Unlocked at **level 5**. Your choice affects your profile color and team representation on the leaderboard:
+
+| Faction | Emoji | Philosophy |
+|---------|-------|------------|
+| **Team GigaChad** | 🔴 | Power and strength. For true champions. |
+| **Team Sadge** | 🔵 | Wisdom and tactics. For smart trainers. |
+| **Team MonkaS** | 🟢 | Balance and nature. For true wanderers. |
+
+### 🌦️ Dynamic Weather
+Real-world weather affects Pepega spawns:
+
+| Weather | Effect |
+|---------|--------|
+| ☀️ Clear | Fire ×1.5, Gold ×1.3 |
+| 🌧 Rain | Water ×1.7 |
+| ⛈ Thunderstorm | Elite spawns |
+| ❄️ Snow | Reduced spawn rate |
+| ☁️ Cloudy | No effect |
+
+### 👤 Multi-Profile System
+- Up to **5 profiles** on a single device
+- Isolated data: inventory, progress, pokestops, gyms, quests
+- Choose an avatar from 10 emojis (🐸🔥💧⭐👾🦊🐉🌊⚡🎮)
+- Nickname length from 3 to 16 characters
+- Displays last login time
+
+### 🔊 Sound Effects
+Immersive gameplay with audio cues:
+- 🎯 Catch
+- 💨 Escape
+- 🏐 Ball throw
+- 🏆 Victory
+- ✨ Evolution
+- 📜 Quest completion
 
 ---
 
-## 🎮 Как играть
+## 📦 Pokedex — Pepega Types
 
-1. **Создайте профиль** — выберите аватар и введите никнейм
-2. **Разрешите геолокацию** — игра определит ваше местоположение и сгенерирует мир вокруг вас
-3. **Ловите Пепег** — тапните по Пепеге на карте → выберите мяч → свайпните вверх или кликните для броска
-4. **Вращайте Пепе-стопы** — подойдите ближе 50м и собирайте ресурсы
-5. **Сражайтесь на Аренах** — подойдите ближе 80м, выберите бойца и сразитесь с боссом
-6. **Эволюционируйте** — накопите конфеты и эволюционируйте своих Пепег
-7. **Крафтите** — создавайте мячи и инкубаторы из материалов
-8. **Выполняйте квесты** — ежедневные задания приносят бонусные награды
-9. **Назначьте Бадди** — выберите спутника, который будет находить конфеты при ходьбе
-10. **Достигните 5 уровня** — выберите фракцию и соревнуйтесь в таблице лидеров!
+| Sprite | Type | Spawn Chance | XP | Base Catch Rate | Evolution |
+|--------|------|:-:|:-:|:-:|-----------|
+| 🟢 | **Normal Pepega** | 60% | 100 | 80% | → Fire (25 🍬) |
+| 🔵 | **Water Pepega** | 25% | 150 | 60% | — |
+| 🔴 | **Fire Pepega** | 10% | 200 | 50% | → Gold (50 🍬) |
+| 🟡 | **Gold Pepega** | 5% | 500 | 20% | — (Final form) |
+
+> **CP (Combat Power)** is randomly generated and depends on the player's level. Each Pepega also gets a random weight and height.
 
 ---
 
-## 🛠 Технологии
+## 🎮 How to Play
 
-| Технология | Версия | Назначение |
-|------------|--------|------------|
-| **React** | 19 | UI-фреймворк |
-| **Vite** | 8 | Сборщик и dev-сервер |
-| **Tailwind CSS** | 4 | Утилитарные CSS-стили |
-| **Leaflet** | 1.9 | Интерактивные карты |
-| **React-Leaflet** | 5 | React-обёртка для Leaflet |
-| **Lucide React** | 1.23 | Иконки |
-| **Oxlint** | 1.71 | Линтер |
-| **Vite Plugin PWA** | 1.3 | Progressive Web App |
-| **Google Fonts** | — | Шрифт **Outfit** (300–900) |
+1. **Create a profile** — choose an avatar and enter a nickname
+2. **Allow Geolocation** — the game will detect your location and generate the world around you
+3. **Catch Pepegas** — tap on a Pepega on the map → select a ball → swipe up or click to throw
+4. **Spin Pepe-stops** — approach within 50m and gather resources
+5. **Battle in Gyms** — approach within 80m, select a fighter, and battle the boss
+6. **Evolve** — collect candies and evolve your Pepegas
+7. **Craft** — create balls and incubators using materials
+8. **Complete Quests** — daily tasks provide bonus rewards
+9. **Assign a Buddy** — choose a companion to find candies while walking
+10. **Reach Level 5** — choose a faction and compete on the leaderboard!
 
 ---
 
-## 📁 Архитектура проекта
+## 🛠 Technologies
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **React** | 19 | UI framework |
+| **Vite** | 8 | Bundler and dev server |
+| **Tailwind CSS** | 4 | Utility-first CSS framework |
+| **Leaflet** | 1.9 | Interactive maps |
+| **React-Leaflet** | 5 | React wrapper for Leaflet |
+| **Lucide React** | 1.23 | Icons |
+| **Oxlint** | 1.71 | Linter |
+| **Vite Plugin PWA** | 1.3 | Progressive Web App integration |
+| **Google Fonts** | — | **Outfit** font (300–900) |
+
+---
+
+## 📁 Project Architecture
 
 ```
 PepegaGo/
-├── public/                     # Статические ассеты
-│   ├── favicon.svg             # Иконка приложения
-│   ├── icons.svg               # SVG-спрайты иконок
-│   ├── pepega.png              # Обычный Пепега
-│   ├── pepega_water.png        # Водяной Пепега
-│   ├── pepega_fire.png         # Огненный Пепега
-│   └── pepega_gold.png         # Золотой Пепега
+├── public/                     # Static assets
+│   ├── favicon.svg             # Application icon
+│   ├── icons.svg               # SVG icon sprites
+│   ├── pepega.png              # Normal Pepega
+│   ├── pepega_water.png        # Water Pepega
+│   ├── pepega_fire.png         # Fire Pepega
+│   └── pepega_gold.png         # Gold Pepega
 │
 ├── src/
-│   ├── main.jsx                # Точка входа React
-│   ├── App.jsx                 # Главный компонент (746 строк)
-│   │                             Вся игровая логика, стейт, навигация
-│   ├── constants.js            # Типы Пепег, предметы, квесты, утилиты
-│   ├── index.css               # Глобальные стили
-│   ├── App.css                 # Стили приложения
+│   ├── main.jsx                # React entry point
+│   ├── App.jsx                 # Main component (746 lines)
+│   │                             Contains all game logic, state, and navigation
+│   ├── constants.js            # Pepega types, items, quests, and utilities
+│   ├── index.css               # Global styles
+│   ├── App.css                 # Application styles
 │   │
 │   ├── components/
-│   │   ├── LoginScreen.jsx     # Экран входа / создания профиля
-│   │   ├── MapView.jsx         # Карта с HUD, маркерами и навигацией
-│   │   ├── CatchScreen.jsx     # Экран ловли (AR-камера)
-│   │   ├── PokestopScreen.jsx  # Экран Пепе-стопа
-│   │   ├── GymScreen.jsx       # Экран Арены (авто-бой)
-│   │   ├── RaidScreen.jsx      # AR-рейд (тап-битва)
-│   │   ├── Inventory.jsx       # Рюкзак (Пепедекс, вещи, яйца, бадди)
-│   │   ├── PepegaDetails.jsx   # Детальная карточка Пепеги
-│   │   ├── EvolutionScreen.jsx # Анимация эволюции
-│   │   ├── Shop.jsx            # Магазин мячей
-│   │   ├── Workshop.jsx        # Верстак (крафтинг)
-│   │   ├── QuestScreen.jsx     # Ежедневные квесты
-│   │   ├── LeaderboardScreen.jsx # Таблица лидеров
-│   │   ├── TeamSelect.jsx      # Выбор фракции
-│   │   └── Toast.jsx           # Всплывающие уведомления
+│   │   ├── LoginScreen.jsx     # Login / Profile creation screen
+│   │   ├── MapView.jsx         # Map with HUD, markers, and navigation
+│   │   ├── CatchScreen.jsx     # Catch screen (AR Camera)
+│   │   ├── PokestopScreen.jsx  # Pepe-stop screen
+│   │   ├── GymScreen.jsx       # Gym screen (Auto-battle)
+│   │   ├── RaidScreen.jsx      # AR Raid (Tap battle)
+│   │   ├── Inventory.jsx       # Backpack (Pokedex, items, eggs, buddy)
+│   │   ├── PepegaDetails.jsx   # Detailed Pepega card
+│   │   ├── EvolutionScreen.jsx # Evolution animation
+│   │   ├── Shop.jsx            # Ball shop
+│   │   ├── Workshop.jsx        # Workbench (Crafting)
+│   │   ├── QuestScreen.jsx     # Daily quests
+│   │   ├── LeaderboardScreen.jsx # Leaderboard
+│   │   ├── TeamSelect.jsx      # Faction selection
+│   │   └── Toast.jsx           # Pop-up notifications
 │   │
 │   ├── utils/
-│   │   └── sounds.js           # Звуковые эффекты (Web Audio API)
+│   │   └── sounds.js           # Sound effects (Web Audio API)
 │   │
 │   └── assets/
 │       ├── hero.png
 │       ├── react.svg
 │       └── vite.svg
 │
-├── index.html                  # HTML-точка входа (шрифт Outfit)
-├── vite.config.js              # Конфигурация Vite (React + Tailwind)
-├── package.json                # Зависимости и скрипты
-└── .oxlintrc.json              # Конфигурация линтера
+├── index.html                  # HTML entry point (Outfit font)
+├── vite.config.js              # Vite configuration (React + Tailwind)
+├── package.json                # Dependencies and scripts
+└── .oxlintrc.json              # Linter configuration
 ```
 
-### Управление стейтом
+### State Management
 
-Приложение использует **React useState/useEffect** без внешних стейт-менеджеров. Весь стейт сосредоточен в `App.jsx`:
+The application uses **React useState/useEffect** without external state managers. All state is centralized in `App.jsx`:
 
-| Стейт | Описание |
-|-------|----------|
-| `activeProfile` | Текущий профиль пользователя |
-| `inventory` | Пепеги, мячи, конфеты, яйца, инкубатор, материалы |
-| `profile` | Уровень, XP, монеты, команда, бадди |
-| `pepegas` | Дикие Пепеги на карте |
-| `pokestops` | Массив Пепе-стопов |
-| `gyms` | Массив Арен с боссами |
-| `weather` | Текущая погода (из Open-Meteo API) |
-| `questState` | Ежедневные квесты с прогрессом |
+| State | Description |
+|-------|-------------|
+| `activeProfile` | Current user profile |
+| `inventory` | Pepegas, balls, candies, eggs, incubator, materials |
+| `profile` | Level, XP, coins, team, buddy |
+| `pepegas` | Wild Pepegas on the map |
+| `pokestops` | Array of Pepe-stops |
+| `gyms` | Array of Gyms with bosses |
+| `weather` | Current weather (from Open-Meteo API) |
+| `questState` | Daily quests with progress tracking |
 
-### Хранение данных
+### Data Storage
 
-Все данные персистятся через `localStorage` с изоляцией по профилям:
+All data is persisted via `localStorage` with profile isolation:
 
 ```
-pepegaProfiles          → Список всех профилей
-pepega_{id}_inventory   → Инвентарь конкретного профиля
-pepega_{id}_profile     → Прогресс конкретного профиля
-pepega_{id}_pokestops   → Покестопы конкретного профиля
-pepega_{id}_gyms        → Гимы конкретного профиля
-pepega_{id}_quests      → Квесты конкретного профиля
+pepegaProfiles          → List of all profiles
+pepega_{id}_inventory   → Inventory for a specific profile
+pepega_{id}_profile     → Progress for a specific profile
+pepega_{id}_pokestops   → Pokestops for a specific profile
+pepega_{id}_gyms        → Gyms for a specific profile
+pepega_{id}_quests      → Quests for a specific profile
 ```
 
 ---
 
-## ⚡ Быстрый старт
+## ⚡ Quick Start
 
-### Требования
+### Requirements
 
 - **Node.js** (v18+)
-- **npm** или **yarn**
-- Браузер с поддержкой **Geolocation API** и **Camera API**
+- **npm** or **yarn**
+- Browser with **Geolocation API** and **Camera API** support
 
-### Установка
+### Installation
 
 ```bash
-# 1. Клонируйте репозиторий
+# 1. Clone the repository
 git clone https://github.com/your-username/PepegaGo.git
 cd PepegaGo
 
-# 2. Установите зависимости
+# 2. Install dependencies
 npm install
 
-# 3. Запустите dev-сервер
+# 3. Start the dev server
 npm run dev
 ```
 
-> ⚠️ **Важно**: для корректной работы GPS и камеры приложение должно быть открыто по **HTTPS** или на `localhost`. При необходимости используйте `vite --host` для доступа с мобильного устройства в локальной сети.
+> ⚠️ **Important**: For GPS and camera to function correctly, the app must be served over **HTTPS** or accessed via `localhost`. If needed, use `vite --host` to access it from a mobile device on your local network.
 
 ---
 
-## 📜 Скрипты
+## 📜 Scripts
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Запуск dev-сервера с HMR |
-| `npm run build` | Сборка production-бандла |
-| `npm run preview` | Предпросмотр production-билда |
-| `npm run lint` | Линтинг через Oxlint |
-
----
-
-## 🌐 API и внешние сервисы
-
-| Сервис | Использование |
-|--------|--------------|
-| [Open-Meteo](https://open-meteo.com/) | Получение текущей погоды по координатам (бесплатно, без ключа) |
-| [OpenStreetMap](https://www.openstreetmap.org/) | Тайлы карты через Leaflet |
-| [Google Fonts](https://fonts.google.com/) | Шрифт Outfit |
-| [leaflet-color-markers](https://github.com/pointhi/leaflet-color-markers) | Цветные маркеры на карте |
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server with HMR |
+| `npm run build` | Build production bundle |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run linter via Oxlint |
 
 ---
 
-## 📄 Лицензия
+## 🌐 APIs & External Services
 
-Этот проект создан в учебных и развлекательных целях.
+| Service | Usage |
+|---------|-------|
+| [Open-Meteo](https://open-meteo.com/) | Get current weather by coordinates (free, no API key required) |
+| [OpenStreetMap](https://www.openstreetmap.org/) | Map tiles via Leaflet |
+| [Google Fonts](https://fonts.google.com/) | Outfit font |
+| [leaflet-color-markers](https://github.com/pointhi/leaflet-color-markers) | Colored map markers |
+
+---
+
+## 📄 License
+
+This project was created for educational and entertainment purposes by Nanda.
 
 ---
 
 <div align="center">
 
-**Сделано с 🐸 и ❤️**
+**Made with 🐸 and ❤️**
 
 *Pepega GO v0.1.0*
 
