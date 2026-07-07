@@ -290,7 +290,7 @@ pepega_{id}_quests      → Quests for a specific profile
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/PepegaGo.git
+git clone https://github.com/nanda070/PepegaGo.git
 cd PepegaGo
 
 # 2. Install dependencies
