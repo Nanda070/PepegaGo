@@ -220,21 +220,6 @@ export default function MapView({ userLocation, pepegas, pokestops, gyms, profil
           );
         })}
       </MapContainer>
-
-      <div className="absolute bottom-8 left-0 w-full px-8 flex justify-between items-end z-[1000] pointer-events-none">
-        <button 
-          onClick={onOpenShop}
-          className="pointer-events-auto bg-white w-14 h-14 rounded-full shadow-xl border-4 border-slate-200 flex items-center justify-center hover:scale-110 transition-transform active:scale-95"
-        >
-          <Store className="w-6 h-6 text-blue-600" />
-        </button>
-        <button 
-          onClick={onOpenInventory}
-          className="pointer-events-auto bg-white w-16 h-16 rounded-full shadow-xl border-4 border-emerald-500 flex items-center justify-center hover:scale-110 transition-transform active:scale-95"
-        >
-          <Backpack className="w-8 h-8 text-emerald-600" />
-        </button>
-      </div>
     </div>
   );
 }

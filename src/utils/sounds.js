@@ -19,7 +19,7 @@ const playTone = (freq, duration, type = 'square', volume = 0.2, delay = 0) => {
     gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + delay + duration);
     osc.start(c.currentTime + delay);
     osc.stop(c.currentTime + delay + duration);
-  } catch (_) {}
+  } catch {}
 };
 
 export const playThrow = () => {

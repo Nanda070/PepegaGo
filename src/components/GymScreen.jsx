@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { X, Swords, Zap, ShieldAlert, Trophy, Skull } from 'lucide-react';
 import { PEPEGA_TYPES, getDistance } from '../constants';
 
-export default function GymScreen({ userLocation, gym, inventory, profile, onVictory, onRaid, onClose }) {
+export default function GymScreen({ userLocation, gym, inventory, onVictory, onRaid, onClose }) {
   const distance = getDistance(userLocation.lat, userLocation.lng, gym.lat, gym.lng);
   const isCooldown = (Date.now() - gym.lastDefeated) < 24 * 60 * 60 * 1000;
   

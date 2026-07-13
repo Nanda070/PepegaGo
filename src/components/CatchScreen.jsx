@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { XCircle, Zap } from 'lucide-react';
 import { PEPEGA_TYPES, ITEMS } from '../constants';
+import { playThrow } from '../utils/sounds';
 
 export default function CatchScreen({ pepega, items, onCatch, onFlee, onUseItem, onClose }) {
   const videoRef = useRef(null);
@@ -60,11 +61,12 @@ export default function CatchScreen({ pepega, items, onCatch, onFlee, onUseItem,
     }
     
     onUseItem(selectedBall);
+    playThrow();
     setStatus('throwing');
     
     const ballMult = ITEMS[selectedBall].catchMultiplier;
     // finalChance reduces as CP increases
-    const finalChance = typeInfo.baseCatchRate * ballMult * Math.max(0.15, (1 - pepega.cp / 4000));
+    const finalChance = typeInfo.catchRate * ballMult * Math.max(0.15, (1 - pepega.cp / 4000));
     
     setTimeout(() => {
       setStatus('shaking');

@@ -13,9 +13,8 @@ export default function Inventory({ inventory, profile, onTransfer, onPowerUp, o
       setTimeout(() => setSelectedPepega(null), 0);
     } else {
       return (
-        <PepegaDetails 
+        <PepegaDetails
           pepega={freshPepega}
-          profile={profile}
           inventory={inventory}
           onPowerUp={onPowerUp}
           onEvolve={onEvolve}

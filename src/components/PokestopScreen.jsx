@@ -63,8 +63,8 @@ export default function PokestopScreen({ userLocation, pokestop, onSpin, onClose
               <p className="text-sm">Подойдите ближе 50 метров.</p>
             </div>
           ) : (
-            <button 
-              onClick={onSpin}
+            <button
+              onClick={handleSpin}
               className="w-full bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all text-white font-bold py-4 rounded-2xl text-xl shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>

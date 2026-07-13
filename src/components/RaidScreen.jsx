@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { X, Zap } from 'lucide-react';
+import { X } from 'lucide-react';
 import { PEPEGA_TYPES } from '../constants';
 
 export default function RaidScreen({ gym, onVictory, onClose }) {
@@ -15,10 +15,11 @@ export default function RaidScreen({ gym, onVictory, onClose }) {
 
   // Camera
   useEffect(() => {
+    let stream = null;
     navigator.mediaDevices?.getUserMedia({ video: { facingMode: 'environment' }, audio: false })
-      .then(stream => { if (videoRef.current) videoRef.current.srcObject = stream; })
+      .then(s => { stream = s; if (videoRef.current) videoRef.current.srcObject = s; })
       .catch(() => {});
-    return () => { if (videoRef.current?.srcObject) videoRef.current.srcObject.getTracks().forEach(t => t.stop()); };
+    return () => { if (stream) stream.getTracks().forEach(t => t.stop()); };
   }, []);
 
   // Timer
@@ -40,8 +41,9 @@ export default function RaidScreen({ gym, onVictory, onClose }) {
     const x = e.touches ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
     const y = e.touches ? e.touches[0].clientY - rect.top : e.clientY - rect.top;
     
-    setTapEffects(prev => [...prev, { id: Date.now(), x, y, dmg }]);
-    setTimeout(() => setTapEffects(prev => prev.filter(ef => ef.id !== Date.now())), 600);
+    const effectId = Date.now() + Math.random();
+    setTapEffects(prev => [...prev, { id: effectId, x, y, dmg }]);
+    setTimeout(() => setTapEffects(prev => prev.filter(ef => ef.id !== effectId)), 600);
 
     setTaps(t => t + 1);
     setBossHp(prev => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import MapView from './components/MapView';
 import CatchScreen from './components/CatchScreen';
 import Inventory from './components/Inventory';
@@ -14,7 +14,7 @@ import LeaderboardScreen from './components/LeaderboardScreen';
 import LoginScreen from './components/LoginScreen';
 import ToastContainer from './components/Toast';
 import { getRandomPepegaType, generatePepegaStats, LEVELS, PEPEGA_TYPES, getDistance, DAILY_QUEST_POOL } from './constants';
-import { playCatch, playFlee, playThrow, playWin, playEvolution, playQuestComplete } from './utils/sounds';
+import { playCatch, playFlee, playWin } from './utils/sounds';
 
 // Helpers for per-profile storage keys
 const profileKey = (profileId, key) => `pepega_${profileId}_${key}`;
@@ -105,17 +105,6 @@ function App() {
     return saved ? JSON.parse(saved) : { level: 1, xp: 0, coins: 0, team: null, buddy: null };
   });
 
-  // Sync to profile-scoped storage whenever data changes
-  useEffect(() => {
-    if (!activeProfile) return;
-    const id = activeProfile.id;
-    ['pepegaInventory','pepegaProfile','pepegaPokestops','pepegaGyms','pepegaQuests'].forEach(key => {
-      const suffix = key.replace('pepega', '').charAt(0).toLowerCase() + key.replace('pepega', '').slice(1);
-      const val = localStorage.getItem(key);
-      if (val) localStorage.setItem(profileKey(id, suffix), val);
-    });
-  });
-
   const handleLogin = (profile) => {
     setActiveProfile(profile);
   };
@@ -167,11 +156,31 @@ function App() {
     return saved ? JSON.parse(saved) : null;
   });
 
+  // Sync to profile-scoped storage whenever data changes
+  useEffect(() => {
+    if (!activeProfile) return;
+    const id = activeProfile.id;
+    ['pepegaInventory','pepegaProfile','pepegaPokestops','pepegaGyms','pepegaQuests'].forEach(key => {
+      const suffix = key.replace('pepega', '').charAt(0).toLowerCase() + key.replace('pepega', '').slice(1);
+      const val = localStorage.getItem(key);
+      if (val) localStorage.setItem(profileKey(id, suffix), val);
+    });
+  }, [activeProfile, inventory, profile, pokestops, gyms, questState]);
+
+  // Keep the buddy snapshot fresh — reflects CP/type changes from power-ups and evolution
+  useEffect(() => {
+    if (!profile.buddy) return;
+    const fresh = inventory.pepegas.find(p => p.id === profile.buddy.id);
+    if (fresh && (fresh.typeId !== profile.buddy.typeId || fresh.cp !== profile.buddy.cp)) {
+      setProfile(prev => ({ ...prev, buddy: fresh }));
+    }
+  }, [inventory.pepegas, profile.buddy]);
+
   const [weather, setWeather] = useState(null); // { code, label, icon, multipliers }
   const [targetPepega, setTargetPepega] = useState(null);
   const [targetPokestop, setTargetPokestop] = useState(null);
   const [targetGym, setTargetGym] = useState(null);
-  const [prevLocation, setPrevLocation] = useState(null);
+  const [, setPrevLocation] = useState(null);
   const [buddyMeterDistance, setBuddyMeterDistance] = useState(0);
 
   useEffect(() => {

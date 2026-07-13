@@ -1,7 +1,7 @@
 import { X, ArrowUpCircle, Trash2, Coins, Zap, Scale, Ruler, Star, Dna } from 'lucide-react';
 import { PEPEGA_TYPES } from '../constants';
 
-export default function PepegaDetails({ pepega, profile, inventory, onPowerUp, onTransfer, onEvolve, onClose }) {
+export default function PepegaDetails({ pepega, inventory, onPowerUp, onTransfer, onEvolve, onClose }) {
   const typeInfo = PEPEGA_TYPES[pepega.typeId] || PEPEGA_TYPES.common;
   const candies = inventory.candies[pepega.typeId] || 0;
 

@@ -1,4 +1,4 @@
-import { X, Hammer, Package } from 'lucide-react';
+import { X, Hammer } from 'lucide-react';
 
 const RECIPES = [
   { id: 'pokeball', name: 'Покебол', cost: { berry: 3 }, reward: { type: 'item', id: 'pokeball' }, icon: '🔴', desc: '3 Ягоды → 1 Покебол' },

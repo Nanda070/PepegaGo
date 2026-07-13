@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { X, CheckCircle2, Circle, Gift, Footprints, Swords, MapPin, Zap } from 'lucide-react';
+import { X } from 'lucide-react';
 import { DAILY_QUEST_POOL } from '../constants';
 import { playQuestComplete } from '../utils/sounds';
 

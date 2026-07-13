@@ -1,5 +1,4 @@
-import { X, Trophy, Zap } from 'lucide-react';
-import { PEPEGA_TYPES } from '../constants';
+import { X, Trophy } from 'lucide-react';
 
 const TEAM_COLORS = {
   GigaChad: 'bg-red-500',
@@ -17,7 +16,7 @@ const TEAM_EMOJIS = {
 function generateRivals(playerLevel) {
   const names = ['PepegaMaster', 'Sadge_Pro', 'GigaTrainer', 'WaterBoy', 'FireLord99', 'GoldHunter', 'Pepegalover'];
   const teams = ['GigaChad', 'Sadge', 'MonkaS'];
-  return names.map((name, i) => {
+  return names.map((name) => {
     const level = Math.max(1, playerLevel + Math.floor(Math.random() * 6) - 3);
     const pepegaCount = Math.floor(Math.random() * 20) + 5;
     const totalCp = Math.floor(Math.random() * 10000) + pepegaCount * 100;

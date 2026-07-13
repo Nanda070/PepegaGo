@@ -3,8 +3,6 @@ import { UserCircle2, Plus, Trash2, ChevronRight, Gamepad2, Sparkles } from 'luc
 
 const AVATARS = ['🐸', '🔥', '💧', '⭐', '👾', '🦊', '🐉', '🌊', '⚡', '🎮'];
 
-const PEPEGA_COUNTS = ['pepegaInventory', 'pepegaProfile'];
-
 function getAllProfiles() {
   try {
     const raw = localStorage.getItem('pepegaProfiles');
